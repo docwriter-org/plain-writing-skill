@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/plain_writing_check.py\" --hook",
+            "command": "uvx --from git+https://github.com/docwriter-org/plain-writing-skill plain-writing-check --hook",
             "timeout": 30,
             "statusMessage": "Checking the final response for plain writing"
           }
