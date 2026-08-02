@@ -50,8 +50,8 @@ instructions.
 
 The hook format is specific to Claude Code. Copy the `Stop` entry from
 `hooks/hooks.json` into the `hooks` object in `~/.claude/settings.json`. Merge it
-with any existing hooks instead of replacing them. Restart Claude Code or run
-`/reload-plugins`, then use `/hooks` to confirm that the Stop hook is present.
+with any existing hooks instead of replacing them. Start a new Claude Code
+session, then use `/hooks` to confirm that the Stop hook is present.
 
 The hook uses an extra model request for every completed response. Install only
 the skill if you do not want that automatic review.

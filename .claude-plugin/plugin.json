@@ -1,6 +1,7 @@
 {
   "name": "plain-writing",
-  "description": "Plain-writing guidance plus an automatic final-response deslop review",
+  "version": "1.0.0",
+  "description": "Plain writing guidance plus an automatic final response deslop review",
   "author": {
     "name": "Docwriter"
   },
