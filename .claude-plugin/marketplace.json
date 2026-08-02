@@ -9,7 +9,7 @@
       "name": "plain-writing",
       "source": "./",
       "description": "Plain writing guidance plus an automatic final response deslop review",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

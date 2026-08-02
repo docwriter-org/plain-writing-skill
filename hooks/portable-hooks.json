@@ -1,12 +1,12 @@
 {
-  "description": "Check final responses against deterministic plain-writing rules",
+  "description": "Portable Stop hook for Codex and command-hook adapters",
   "hooks": {
     "Stop": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/scripts/plain_writing_check.py\" --hook",
+            "command": "plain-writing-check --hook",
             "timeout": 30,
             "statusMessage": "Checking the final response for plain writing"
           }

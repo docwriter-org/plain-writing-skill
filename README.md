@@ -1,17 +1,44 @@
 # Plain writing
 
-This repository provides the plain-writing rules in two forms.
+This repository provides plain-writing rules, a command line checker, and
+automatic response hooks.
 
-The skill teaches an AI agent how to write and revise prose. The Claude Code
-hook reviews every completed response and asks Claude to rewrite it when the
-response has material style problems.
+The skill teaches an AI agent how to write and revise prose. The checker finds
+mechanical rule violations without calling a model. Claude Code, Codex, and Pi
+can run the same checker when an agent finishes a response.
 
 ## What is included
 
 - `SKILL.md` contains the full writing rules and the manual deslopify command.
-- `hooks/hooks.json` contains the automatic Claude Code Stop hook.
+- `plain_writing/` contains the dependency free Python checker.
+- `CHECKS.md` lists the rules that the checker can and cannot enforce.
+- `hooks/hooks.json` contains the bundled Claude Code Stop hook.
+- `hooks/portable-hooks.json` contains a Stop hook for an installed checker.
 - `.claude-plugin/plugin.json` packages the skill and hook as one Claude Code
   plugin.
+
+## Use the checker
+
+The checker requires Python 3.9 or later and has no runtime dependencies. Install
+it with one of these commands:
+
+```sh
+pipx install git+https://github.com/docwriter-org/plain-writing-skill
+uv tool install git+https://github.com/docwriter-org/plain-writing-skill
+```
+
+Check text from standard input, a file, or a directory:
+
+```sh
+echo "Text to check" | plain-writing-check
+plain-writing-check README.md
+plain-writing-check docs/
+plain-writing-check --format json README.md
+```
+
+The command reports each rule, line, column, and matching text. It exits with
+status 1 when it finds a violation, so it can also run in tests or a Git
+pre-commit hook.
 
 ## Install the skill and hook in Claude Code
 
@@ -26,12 +53,38 @@ Run these commands inside Claude Code:
 The plugin applies the skill when Claude writes prose. It also runs the hook
 when Claude finishes a response.
 
-The hook sends the completed response to a fast model for review. If the review
-finds material problems, Claude receives a specific instruction to rewrite the
-whole response. The hook allows the second response without another rewrite, so
-it cannot keep Claude in a correction loop.
+The hook runs the bundled checker locally. It does not send the response to
+another model. When the checker finds a violation, Claude receives the rule
+identifiers and source text and rewrites the whole response. The hook allows the
+second response without another correction, so it cannot create a loop.
 
 Run `/hooks` and open `Stop` to confirm that the plugin hook is active.
+
+## Install the hook in Codex
+
+First install `plain-writing-check` with `pipx` or `uv` as shown above. Copy
+`hooks/portable-hooks.json` to `~/.codex/hooks.json`, or merge its `Stop` entry
+with the hooks already in that file.
+
+Start Codex and run `/hooks`. Review and trust the command before using it.
+Codex records trust for the exact hook definition, so you must trust it again
+after changing the command.
+
+## Install the hook in Pi
+
+Pi needs the `pi-hooks` adapter because its extension API does not read
+Claude-style command hooks by itself. Install the adapter:
+
+```sh
+pi install npm:@hsingjui/pi-hooks
+```
+
+First install `plain-writing-check` with `pipx` or `uv`. Then merge the `Stop`
+entry from `hooks/portable-hooks.json` into the `hooks` object in
+`~/.pi/agent/settings.json`. Run `/reload` in Pi after changing the settings.
+
+The adapter runs the same command and gives Pi the same rewrite instruction when
+the checker finds a violation.
 
 ## Install only the skill
 
@@ -42,19 +95,18 @@ into a folder named `plain-writing`:
 git clone https://github.com/docwriter-org/plain-writing-skill ~/.claude/skills/plain-writing
 ```
 
-Other agents, including Codex and pi, can use the rules too. Give `SKILL.md` to
+Other agents, including Codex and Pi, can use the rules too. Give `SKILL.md` to
 the agent as an instruction file or include its contents in the agent's system
 instructions.
 
-## Install only the hook
+## Install only the Claude Code hook
 
-The hook format is specific to Claude Code. Copy the `Stop` entry from
-`hooks/hooks.json` into the `hooks` object in `~/.claude/settings.json`. Merge it
-with any existing hooks instead of replacing them. Start a new Claude Code
-session, then use `/hooks` to confirm that the Stop hook is present.
-
-The hook uses an extra model request for every completed response. Install only
-the skill if you do not want that automatic review.
+Clone the repository, then copy the `Stop` entry from `hooks/hooks.json` into the
+`hooks` object in `~/.claude/settings.json`. Replace
+`${CLAUDE_PLUGIN_ROOT}` in the command with the absolute path to the cloned
+repository. Merge the entry with existing hooks instead of replacing them.
+Start a new Claude Code session, then use `/hooks` to confirm that the Stop hook
+is present.
 
 Claude Code does not run the Stop hook when you interrupt a response or when an
 API error ends the turn.

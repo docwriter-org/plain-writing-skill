@@ -262,3 +262,9 @@ Second pass. Read the revised text again as if you had never seen it. Go clause 
 clause and ask whether each clause adds something the reader needs. If a clause
 or a whole sentence does not earn its place, remove it. Then check that a reader
 seeing the text for the first time would understand every sentence.
+
+When `plain-writing-check` is available, run it on prose files after the first
+pass. In a cloned copy of this skill, you can run
+`python3 scripts/plain_writing_check.py <path>`. Fix the reported mechanical
+violations, then complete the second pass yourself because the checker cannot
+judge meaning, reader context, or whether an explanation is complete.
