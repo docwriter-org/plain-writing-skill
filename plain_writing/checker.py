@@ -235,7 +235,11 @@ def check_text(text: str) -> list[Violation]:
         _clause_violations(text, masked),
     )
     violations = [violation for results in checks for violation in results]
-    unique = {
-        (item.rule, item.line, item.column, item.excerpt): item for item in violations
-    }
-    return sorted(unique.values(), key=lambda item: (item.line, item.column, item.rule))
+    unique: list[Violation] = []
+    seen: set[tuple[str, int, str]] = set()
+    for item in violations:
+        key = (item.rule, item.line, item.excerpt)
+        if key not in seen:
+            seen.add(key)
+            unique.append(item)
+    return sorted(unique, key=lambda item: (item.line, item.column, item.rule))

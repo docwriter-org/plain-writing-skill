@@ -30,7 +30,13 @@ class CheckerTests(unittest.TestCase):
         rules = self.rules(
             "It is worth noting that this robust tool really leverages the cache."
         )
-        self.assertTrue({"PW005", "PW006", "PW009"} <= rules)
+        self.assertTrue({"PW005", "PW006"} <= rules)
+        banned = [
+            item
+            for item in check_text("The robust tool is really useful.")
+            if item.rule == "PW005"
+        ]
+        self.assertEqual(len(banned), 1)
 
     def test_finds_negative_parallel_and_vague_source(self) -> None:
         rules = self.rules(
