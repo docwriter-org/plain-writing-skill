@@ -1,0 +1,17 @@
+{
+  "description": "Review final responses for plain writing before Claude stops",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "timeout": 30,
+            "statusMessage": "Checking the final response for plain writing",
+            "prompt": "Review the final assistant response in this Stop hook input: $ARGUMENTS\n\nIf stop_hook_active is true, return {\"ok\": true}. The response has already had one chance to be corrected, so do not start a loop.\n\nOtherwise, decide whether the assistant-authored prose needs a material rewrite before the user sees it as the final answer. Approve concise answers when they are already clear. Ignore code, quoted text, logs, file paths, URLs, commands, identifiers, and terms that must remain exact.\n\nRequire the prose to:\n1. State the main conclusion or result first and include enough context for a reader who has not followed the work.\n2. Use simple, exact words. Keep necessary technical terms, but explain any term the intended reader may not know.\n3. Use complete, explanatory sentences and coherent paragraphs. Avoid both cramped sentences and a choppy series of fragments.\n4. Remove filler, puffery, slogans, metaphors, invented labels, unnecessary repetition, rhetorical questions, and dramatic pivots.\n5. Avoid em dashes, en dashes, decorative boldface, and headings written in title case.\n6. Make claims precise. Name the actor, action, evidence, risk, or unknown instead of gesturing with vague words.\n\nReturn {\"ok\": true} when no material rewrite is needed. If a rewrite is needed, return {\"ok\": false, \"reason\": \"Rewrite the entire final response using the plain-writing rules. Return only the replacement response, not a critique or preface. Fix these specific problems: ...\"}. List only concrete problems found in the response."
+          }
+        ]
+      }
+    ]
+  }
+}

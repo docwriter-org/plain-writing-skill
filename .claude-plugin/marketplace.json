@@ -1,0 +1,13 @@
+{
+  "name": "plain-writing",
+  "owner": {
+    "name": "Docwriter"
+  },
+  "plugins": [
+    {
+      "name": "plain-writing",
+      "source": "./",
+      "description": "Plain-writing guidance plus an automatic final-response deslop review"
+    }
+  ]
+}

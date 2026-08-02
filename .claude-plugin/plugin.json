@@ -1,0 +1,9 @@
+{
+  "name": "plain-writing",
+  "description": "Plain-writing guidance plus an automatic final-response deslop review",
+  "author": {
+    "name": "Docwriter"
+  },
+  "repository": "https://github.com/docwriter-org/plain-writing-skill",
+  "license": "MIT"
+}
