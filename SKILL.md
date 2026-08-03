@@ -26,6 +26,13 @@ The rules are in four groups: word choice and tone, sentences and paragraphs,
 punctuation and formatting, and patterns to avoid. Each rule is followed by a
 before and after so you can see it. After the rules comes how to revise.
 
+The rules adapt useful ideas from ASD-STE100 Simplified Technical English. In
+particular, use simple words, keep one meaning for each word, use the same term
+for the same thing, name the actor, and keep each sentence about one topic. This
+skill does not require the STE dictionary or claim full STE compliance. STE was
+designed for maintenance instructions, while this skill also covers general
+prose.
+
 ## The deslopify command
 
 When the user says `/plain-writing deslopify`, rewrite the previous agent
@@ -63,9 +70,10 @@ ideas instead of a series of short sentences.
    Before: This result matters, and it carries weight for the design.
    After: The scores barely moved, so we can skip the model on most documents.
 
-4. **Repeat a word rather than swap in a synonym.** When the same thing comes up
-   again, use the same word for it. Do not use a different word just to avoid
-   repeating yourself, because the swap reads as fancy.
+4. **Use one word for one meaning, and repeat it consistently.** When the same
+   thing comes up again, use the same word for it. Do not use a different word
+   just to avoid repetition, and do not use one word for two meanings when a
+   clearer term is available.
    Before: Upload the document. The file is parsed, and the record is saved.
    After: Upload the document. The document is parsed and saved.
 
@@ -93,12 +101,11 @@ ideas instead of a series of short sentences.
 
 ## Sentences and paragraphs
 
-8. **Write complete sentences.** Each sentence has a subject and a verb. Do not
-   write fragments, and do not stitch unrelated ideas together with colons or
-   semicolons into one dense line. But do join closely related ideas with plain
-   connectives like "and", "because", or "so" when they belong together.
-   Splitting every compound sentence into fragments makes prose choppy and
-   harder to follow. The test is whether the ideas are actually related.
+8. **Keep one topic in each complete sentence.** Each sentence has a subject
+   and a verb. Do not write fragments, and do not stitch unrelated topics
+   together with colons or semicolons. A sentence can use "and", "because", or
+   "so" to join two closely related clauses about one topic. The test is
+   whether both clauses help explain the same point.
    Before: The agent polls the file and reacts to changes, and the team meets on
    Tuesdays.
    After: The agent polls the file and reacts to changes. The team meets on
@@ -137,12 +144,11 @@ ideas instead of a series of short sentences.
     After: The parser reads the file, and the validator checks the fields. The
     writer then saves the record.
 
-12. **Prefer long, explanatory sentences over short, punchy ones.** The user
-    writes the way people explain things out loud, in longer sentences with
-    commas and one or two related clauses that carry the reasoning along. A
-    sentence should end because the thought is complete, not because a short
-    sentence would sound stronger. Plain writing here means explanatory, not
-    terse.
+12. **Write sentences that explain the point fully.** The user writes the way
+    people explain things out loud, with one or two related clauses that carry
+    the reasoning along. Do not use short, punchy fragments, but do not make
+    length a goal. End a sentence when its one topic is complete. Plain writing
+    here means explanatory, not terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
     After: The gate runs on every merge and blocks changes that fail a
@@ -186,9 +192,10 @@ ideas instead of a series of short sentences.
 
 ## Patterns to avoid
 
-18. **Do not assign actions to inanimate things.** An inanimate subject should
-    usually only take "is" or "are", not an action verb. Make a person the actor
-    instead. Common phrases such as "the paper argues" are fine.
+18. **Name the actor and use active voice.** Say who or what performs an action.
+    Use a person, team, or system as the actor when one is known. Do not give
+    human motives or judgments to an object. Common phrases such as "the paper
+    argues" are fine.
     Before: The logs become searchable records once the job finishes.
     After: You can search the logs once the job finishes.
 
