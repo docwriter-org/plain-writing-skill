@@ -1,0 +1,17 @@
+{
+  "description": "Check final responses against deterministic plain-writing rules",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uvx --from git+https://github.com/docwriter-org/plain-writing-skill plain-writing-check --hook",
+            "timeout": 30,
+            "statusMessage": "Checking the final response for plain writing"
+          }
+        ]
+      }
+    ]
+  }
+}

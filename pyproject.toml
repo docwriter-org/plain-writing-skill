@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plain-writing-check"
+version = "1.6.0"
+description = "Check prose against the plain-writing skill rules"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+  { name = "Docwriter" }
+]
+keywords = ["linter", "writing", "llm", "prose", "hooks"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Text Processing :: Linguistic"
+]
+
+[project.urls]
+Repository = "https://github.com/docwriter-org/plain-writing-skill"
+
+[project.scripts]
+plain-writing-check = "plain_writing.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["plain_writing*"]

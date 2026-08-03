@@ -1,0 +1,15 @@
+{
+  "name": "plain-writing",
+  "description": "Tools that help Claude write clear, direct prose",
+  "owner": {
+    "name": "Docwriter"
+  },
+  "plugins": [
+    {
+      "name": "plain-writing",
+      "source": "./",
+      "description": "Plain writing guidance plus an automatic final response deslop review",
+      "version": "1.6.0"
+    }
+  ]
+}
