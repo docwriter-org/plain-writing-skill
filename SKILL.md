@@ -48,7 +48,7 @@ ideas instead of a series of short sentences.
 1. **Use simple, everyday words.** Prefer the common word over the fancy one.
    Short familiar words are faster to read. Also avoid words AI tools
    overuse, e.g., "delve", "tapestry", "landscape", "robust", "leverage", and
-   "reach for".
+   "reach".
    Before: We leverage the cache to unlock a more robust query experience.
    After: We use the cache to make repeated queries faster.
 
@@ -141,12 +141,13 @@ ideas instead of a series of short sentences.
     writes the way people explain things out loud, in longer sentences with
     commas and one or two related clauses that carry the reasoning along. A
     sentence should end because the thought is complete, not because a short
-    sentence would sound stronger. Plain writing here means explanatory, not
-    terse.
+    sentence would sound stronger. Use commas where a speaker would pause and
+    where the pause makes the sentence easier to follow. Plain writing here
+    means explanatory, not terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
     After: The gate runs on every merge and blocks changes that fail a
-    regression case. A regression can reach production only when someone
+    regression case. A regression cannot make it to production, unless someone
     deliberately overrides the check.
 
 13. **Be precise and unambiguous.** Every claim says exactly what changes,
