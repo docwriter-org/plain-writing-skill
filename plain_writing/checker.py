@@ -47,7 +47,8 @@ PATTERN_RULES = (
         "Remove the filler phrase and state the useful information directly.",
         r"\b(?:it is|it's) worth noting that\b|\bto be clear\b"
         r"|\bat the end of the day\b|\bneedless to say\b"
-        r"|\bin today['’]s (?:world|landscape)\b|\bin a world where\b",
+        r"|\bin today['’]s (?:world|landscape)\b|\bin a world where\b"
+        r"|\bearn(?:s|ed|ing)? (?:its|their) place\b",
     ),
     _rule(
         "PW007",

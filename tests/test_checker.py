@@ -37,6 +37,10 @@ class CheckerTests(unittest.TestCase):
             if item.rule == "PW005"
         ]
         self.assertEqual(len(banned), 1)
+        self.assertIn(
+            "PW006",
+            self.rules("Every sentence must earn its place."),
+        )
 
     def test_finds_negative_parallel_and_vague_source(self) -> None:
         rules = self.rules(

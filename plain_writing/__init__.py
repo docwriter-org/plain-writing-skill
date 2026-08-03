@@ -3,4 +3,4 @@
 from .checker import Violation, check_text
 
 __all__ = ["Violation", "check_text"]
-__version__ = "1.5.0"
+__version__ = "1.6.0"

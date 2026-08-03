@@ -267,10 +267,9 @@ Revise in two passes.
 
 First pass. Read the text once and fix anything that breaks the rules above.
 
-Second pass. Read the revised text again as if you had never seen it. Go clause by
-clause and ask whether each clause adds something the reader needs. If a clause
-or a whole sentence does not earn its place, remove it. Then check that a reader
-seeing the text for the first time would understand every sentence.
+Second pass. Read the revised text without relying on background knowledge.
+Remove any clause or sentence that adds no necessary information. Check that
+every sentence is clear on first reading.
 
 When `plain-writing-check` is available, run it on prose files after the first
 pass. Run it without installing it with
