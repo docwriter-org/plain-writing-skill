@@ -2,14 +2,14 @@
 name: plain-writing
 description: >-
   Write and edit prose in the user's plain style: simple everyday words,
-  complete sentences, no dashes, no jargon, no analogies, no filler, and full
-  clear explanations. Use this whenever you draft or revise any prose for the
-  user, such as documents, Notion pages, reports, summaries, README files,
-  research notes, proposals, slide text, emails, or commit and PR descriptions.
-  Also use it whenever the user asks to simplify, clean up, tighten, reword, or
-  make writing clearer or easier to read. Default to this style for prose
-  written for the user unless they ask for a different one. Do not apply it to
-  code itself, only to the words around it. When the user invokes
+  complete sentences, no em or en dashes, no jargon, no analogies, no filler,
+  and full clear explanations. Use this whenever you draft or revise any prose
+  for the user, such as documents, Notion pages, reports, summaries, README
+  files, research notes, proposals, slide text, emails, or commit and PR
+  descriptions. Also use it whenever the user asks to simplify, clean up,
+  tighten, reword, or make writing clearer or easier to read. Default to this
+  style for prose written for the user unless they ask for a different one. Do
+  not apply it to code itself, only to the words around it. When the user invokes
   "/plain-writing deslopify" or asks to deslopify an agent response, rewrite
   the response in a clear structure for a sharp CEO or technical reader who
   has no project context and needs to understand all relevant details.
@@ -59,7 +59,9 @@ ideas instead of a series of short sentences.
    Before: We leverage the cache to unlock a more robust query experience.
    After: We use the cache to make repeated queries faster.
 
-2. **No jargon.** Always use human-understandable language. Don't invent jargon or shorthand (that is, if a word or phrase is not in the Merriam Webster dictionary, don't use it). Use established technical terms only when they are most precise, and briefly define them when readers may not know them.
+2. **No jargon.** Always use language that people can understand. Do not invent
+   jargon or shorthand. Use an established technical term only when it is the
+   most precise term, and briefly define it when readers may not know it.
    Before: The score is a calibrated proxy for whether the property holds.
    After: The score estimates how likely the property is to hold.
 
@@ -74,8 +76,8 @@ ideas instead of a series of short sentences.
    thing comes up again, use the same word for it. Do not use a different word
    just to avoid repetition, and do not use one word for two meanings when a
    clearer term is available.
-   Before: Upload the document. The file is parsed, and the record is saved.
-   After: Upload the document. The document is parsed and saved.
+   Before: Upload the document. The system parses the file and saves the record.
+   After: Upload the document. The system parses and saves the document.
 
 5. **Contractions are fine.** They match everyday speech, so use them freely.
    You do not have to write every word out in full.
@@ -137,8 +139,8 @@ ideas instead of a series of short sentences.
     example sentences in a row.** A sentence may contain one or two related
     clauses. If it contains three or more clauses, split it into separate
     sentences. If the clauses form a list, use bullet points. When an example
-    helps, give one example and introduce it with "e.g.". Do not give three or
-    more example sentences back to back to support the same point.
+    helps, give one clearly introduced example. Do not give three or more
+    example sentences back to back to support the same point.
     Before: The parser reads the file, the validator checks the fields, and the
     writer saves the record.
     After: The parser reads the file, and the validator checks the fields. The
