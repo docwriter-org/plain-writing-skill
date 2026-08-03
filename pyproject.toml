@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "plain-writing-check"
-version = "1.4.0"
+version = "1.5.0"
 description = "Check prose against the plain-writing skill rules"
 readme = "README.md"
 requires-python = ">=3.9"

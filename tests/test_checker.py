@@ -105,6 +105,12 @@ class CheckerTests(unittest.TestCase):
             self.rules("E.g., settings.json needs its exact name."),
         )
 
+    def test_finds_vague_backward_reference(self) -> None:
+        self.assertIn(
+            "PW024",
+            self.rules("Both patterns make the prose feel staged."),
+        )
+
     def test_reports_source_location(self) -> None:
         violation = check_text("A plain first line.\nThis is vague.")[0]
         self.assertEqual((violation.line, violation.column), (2, 1))

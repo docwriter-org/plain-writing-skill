@@ -114,6 +114,12 @@ PATTERN_RULES = (
         'Introduce the example with "For example," or "e.g.,".',
         r"\b(?:for instance|such as)\b",
     ),
+    _rule(
+        "PW024",
+        "Name the subject instead of referring back to it vaguely.",
+        r"\b(?:both|these|those|such)\s+"
+        r"(?:patterns|approaches|methods|ideas|things|cases)\b",
+    ),
 )
 
 

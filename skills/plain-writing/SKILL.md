@@ -169,9 +169,8 @@ ideas instead of a series of short sentences.
     Before: The build is fast — it finishes in 10 to 20 seconds.
     After: The build is fast. It finishes in 10 to 20 seconds.
 
-16. **Do not use colons.** A colon usually introduces a list or sets up a point,
-    and both patterns make the prose feel compressed or staged. Use a period and
-    explain the relationship directly.
+16. **Do not use colons.** A colon compresses the relationship between two
+    ideas. Use a period and explain the relationship directly.
     Before: Read for the schema: the feature fires.
     After: Read for the schema. The feature fires.
 
