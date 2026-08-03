@@ -19,12 +19,12 @@ description: >-
 
 The plain writing skill captures how the user wants written prose to read. The
 goal is text that anyone can read once and understand. The user has asked for the
-plain style repeatedly and corrects writing that does not follow it, so apply it
-by default when you write prose for them.
+plain style repeatedly, and they correct writing that does not follow it, so
+apply it by default when you write prose for them.
 
 The rules are in four groups: word choice and tone, sentences and paragraphs,
 punctuation and formatting, and patterns to avoid. Each rule is followed by a
-before and after so you can see it. After the rules comes how to revise.
+before and after, so you can see it. After the rules comes how to revise.
 
 ## The deslopify command
 
@@ -46,9 +46,9 @@ ideas instead of a series of short sentences.
 ## Word choice and tone
 
 1. **Use simple, everyday words.** Prefer the common word over the fancy one.
-   Short familiar words are faster to read. Also avoid words AI tools
-   overuse, e.g., "delve", "tapestry", "landscape", "robust", "leverage", and
-   "reach".
+   Short familiar words are faster to read, and you should also avoid words AI
+   tools overuse, e.g., "delve", "tapestry", "landscape", "robust", "leverage",
+   and "reach".
    Before: We leverage the cache to unlock a more robust query experience.
    After: We use the cache to make repeated queries faster.
 
@@ -77,7 +77,8 @@ ideas instead of a series of short sentences.
 6. **Do not invent hyphenated adjectives.** A common compound adjective that
    people already use is fine, e.g., "well-crafted". Avoid a phrase you make up
    by joining words with a hyphen to sound compact or clever. A good test is
-   whether you would find the term in a dictionary or hear it in normal speech.
+   whether you would find the term in a dictionary, or whether you would hear it
+   in normal speech.
    Before: We added a reveal-style colon to the output.
    After: We added a colon that shows the schema.
 
@@ -112,8 +113,8 @@ ideas instead of a series of short sentences.
    training extra small models and labeling again.
    After: First, the authors sorted the features into groups themselves, based on
    their own reading of the outputs. Second, they wrote the example posts by
-   hand. Third, when they wanted finer detail, they trained another small model
-   and labeled the posts again.
+   hand. Third, when they wanted finer detail, they trained another small
+   model, and they labeled the posts again.
 
 10. **Organize a paragraph as a topic sentence and then support.** Start each
    paragraph or section with a topic sentence that states the main point. Then
@@ -140,11 +141,9 @@ ideas instead of a series of short sentences.
 12. **Prefer long, explanatory sentences over short, punchy ones.** The user
     writes the way people explain things out loud, in longer sentences with
     commas and one or two related clauses that carry the reasoning along. A
-    sentence should end because the thought is complete, not because a short
-    sentence would sound stronger. Use commas to separate clauses, and use them
-    where a speaker would pause. The commas should make the relationship between
-    the clauses easier to follow. Plain writing here means explanatory, not
-    terse.
+    sentence should end because the thought is complete, and it should not end
+    because a short sentence would sound stronger. Plain writing here means
+    explanatory, not terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
     After: The gate runs on every merge, and it blocks changes that fail a
@@ -190,9 +189,10 @@ ideas instead of a series of short sentences.
 
 18. **Do not assign actions to inanimate things.** An inanimate subject should
     usually only take "is" or "are", not an action verb. Make a person the actor
-    instead. Common phrases such as "the paper argues" are fine.
-    Before: The logs become searchable records once the job finishes.
-    After: You can search the logs once the job finishes.
+    instead, and remember that common phrases such as "the paper argues" are
+    fine.
+    Before: The logs become searchable records, once the job finishes.
+    After: You can search the logs, once the job finishes.
 
 19. **No analogies or imagery.** Do not explain something by comparing it to a
     different thing. Do not use a metaphor or any phrase meant to sound smart.
@@ -221,7 +221,7 @@ ideas instead of a series of short sentences.
     After: We do not yet know whether the tool keeps the writer's voice, or
     whether it makes the argument stronger or weaker.
 
-23. **Do not use the dramatic pivot.** Do not set up a statement and then
+23. **Do not use the dramatic pivot.** Do not set up a statement, and do not
     undercut it in the next sentence. State the full point in one go.
     Before: The model is still opaque. Users notice the wrong citations, but
     those are only one symptom.
@@ -246,7 +246,7 @@ ideas instead of a series of short sentences.
 26. **Do not open with a count of things.** Never start a sentence, a
     paragraph, or a topic sentence by announcing how many points are coming,
     e.g., "Two cautions.", "Three things to keep in mind:", "A few notes
-    before we start." State the first point directly and let the next one
+    before we start." State the first point directly, and let the next one
     follow it. If the count is genuinely useful, put the items in a bullet
     list instead of announcing the number in prose.
     Before: Two cautions. First, the section can drift out of date. Second,
@@ -258,9 +258,9 @@ ideas instead of a series of short sentences.
 
 Revise in two passes.
 
-First pass. Read the text once and fix anything that breaks the rules above.
+First pass. Read the text once, and fix anything that breaks the rules above.
 
-Second pass. Read the revised text again as if you had never seen it. Go clause by
-clause and ask whether each clause adds something the reader needs. If a clause
-or sentence adds nothing the reader needs, remove it. Then check that a reader
-seeing the text for the first time would understand every sentence.
+Second pass. Read the revised text again, as if you had never seen it. Go clause
+by clause, and ask whether each clause adds something the reader needs. If a
+clause or sentence adds nothing the reader needs, remove it. Then check that a
+reader seeing the text for the first time would understand every sentence.
