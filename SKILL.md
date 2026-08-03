@@ -141,12 +141,13 @@ ideas instead of a series of short sentences.
     writes the way people explain things out loud, in longer sentences with
     commas and one or two related clauses that carry the reasoning along. A
     sentence should end because the thought is complete, not because a short
-    sentence would sound stronger. Use commas where a speaker would pause and
-    where the pause makes the sentence easier to follow. Plain writing here
-    means explanatory, not terse.
+    sentence would sound stronger. Use commas to separate clauses, and use them
+    where a speaker would pause. The commas should make the relationship between
+    the clauses easier to follow. Plain writing here means explanatory, not
+    terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
-    After: The gate runs on every merge and blocks changes that fail a
+    After: The gate runs on every merge, and it blocks changes that fail a
     regression case. A regression cannot make it to production, unless someone
     deliberately overrides the check.
 
