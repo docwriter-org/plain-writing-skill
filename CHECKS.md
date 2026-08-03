@@ -1,7 +1,7 @@
 # Programmatic checks
 
-The checker reports rules with stable identifiers, source lines, columns, and
-the text that caused each report.
+The checker gives each rule a stable identifier and reports its source
+location. Each report includes the matching text.
 
 | Rule | Check |
 | --- | --- |
@@ -18,30 +18,31 @@ the text that caused each report.
 | PW011 | Sentences that announce a count of points |
 | PW012 | Explicit comparison using "is like" or "as if" |
 | PW013 | Sentences that open with a dramatic pivot |
-| PW014 | A colon followed by prose instead of a list |
+| PW014 | Colon |
 | PW015 | Empty sentence openers |
 | PW016 | Markdown headings written in title case |
 | PW017 | Standalone decorative bold lines |
 | PW018 | Consecutive rhetorical questions |
 | PW019 | Three consecutive short sentences |
 | PW020 | A sentence with three or more coordinated clauses |
+| PW021 | Markdown bullet or numbered list |
+| PW022 | Three or more items written as an inline list |
 
-The checker ignores fenced code, inline code, and URLs because their spelling
-often has to remain exact.
+The checker ignores code because its spelling often has to remain exact. It also
+ignores URLs.
 
 ## Checks that still require the skill
 
-A deterministic checker cannot reliably decide whether the reader knows a
-technical term, whether an explanation includes enough context, or whether a
-word is an invented label. It also cannot find every metaphor, decide whether
-an inanimate subject has an appropriate verb, or tell whether two clauses
-belong in the same sentence.
+A deterministic checker cannot reliably decide whether the intended reader will
+understand a technical term. It cannot tell whether an explanation supplies the
+context that reader needs. Human judgment is also required to identify invented
+labels and implicit metaphors. Sentence relationships require the same judgment.
 
 The hook therefore catches mechanical problems and sends exact findings back to
-the agent. The skill remains responsible for meaning, organization, precision,
-and reader context.
+the agent. The skill remains responsible for whether the prose conveys its exact
+meaning in a form the intended reader can follow.
 
-Some checks use narrow structural clues. For example, PW012 finds an explicit
-"is like" comparison but cannot find every analogy. PW019 counts words in
-consecutive sentences, and PW020 counts coordinated clauses. Review those
-reports when the sentence structure is intentional.
+Some checks use narrow structural clues. PW012 finds an explicit "is like"
+comparison but cannot find every analogy. PW019 counts words in consecutive
+sentences. PW020 counts coordinated clauses. Review a report when the matched
+sentence structure is intentional.

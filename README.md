@@ -9,12 +9,10 @@ can run the same checker when an agent finishes a response.
 
 ## What is included
 
-- `SKILL.md` contains the full writing rules and the manual deslopify command.
-- `plain_writing/` contains the dependency free Python checker.
-- `CHECKS.md` lists the rules that the checker can and cannot enforce.
-- `hooks/hooks.json` contains the Stop hook used by each supported agent.
-- `.claude-plugin/plugin.json` packages the skill and hook as one Claude Code
-  plugin.
+The canonical skill is at `skills/plain-writing/SKILL.md`. The Python checker is
+in `plain_writing/`, and `CHECKS.md` explains its limits. The Stop hook used by
+each supported agent is at `hooks/hooks.json`. The Claude Code plugin manifest
+is at `.claude-plugin/plugin.json`.
 
 ## Run the checker with uvx
 
@@ -28,9 +26,10 @@ uvx --from git+https://github.com/docwriter-org/plain-writing-skill plain-writin
 You do not need to clone the repository or install the checker. `uvx` creates
 the tool environment on the first run and reuses its cache on later runs.
 
-The checker accepts standard input, files, and directories. Add `--format json`
-for machine-readable output. It reports each rule, line, column, and matching
-text, and it exits with status 1 when it finds a violation.
+The checker reads standard input or a path. A path can name one file or a
+directory. Add `--format json` for machine-readable output. Each report names
+the rule and source location, and the command exits with status 1 when it finds
+a violation.
 
 ## Install the skill and hook in Claude Code
 
@@ -86,9 +85,9 @@ into a folder named `plain-writing`:
 git clone https://github.com/docwriter-org/plain-writing-skill ~/.claude/skills/plain-writing
 ```
 
-Other agents, including Codex and Pi, can use the rules too. Give `SKILL.md` to
-the agent as an instruction file or include its contents in the agent's system
-instructions.
+Other agents, including Codex and Pi, can use the rules too. Give
+`skills/plain-writing/SKILL.md` to the agent as an instruction file or include
+its contents in the agent's system instructions.
 
 ## Install only the Claude Code hook
 

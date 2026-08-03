@@ -2,8 +2,8 @@
 name: plain-writing
 description: >-
   Write and edit prose in the user's plain style: simple everyday words,
-  complete sentences, no dashes, no jargon, no analogies, no filler, and full
-  clear explanations. Use this whenever you draft or revise any prose for the
+  complete sentences, no dashes, no lists, no jargon, no analogies, no filler,
+  and full clear explanations. Use this whenever you draft or revise any prose for the
   user, such as documents, Notion pages, reports, summaries, README files,
   research notes, proposals, slide text, emails, or commit and PR descriptions.
   Also use it whenever the user asks to simplify, clean up, tighten, reword, or
@@ -22,9 +22,9 @@ goal is text that anyone can read once and understand. The user has asked for th
 plain style repeatedly and corrects writing that does not follow it, so apply it
 by default when you write prose for them.
 
-The rules are in four groups: word choice and tone, sentences and paragraphs,
-punctuation and formatting, and patterns to avoid. Each rule is followed by a
-before and after so you can see it. After the rules comes how to revise.
+The rules explain how to make prose easy to understand and identify common AI
+writing patterns. Each rule has a before and after example. Revision guidance
+comes after the rules.
 
 ## The deslopify command
 
@@ -33,11 +33,11 @@ response, or the text after the command, in a clear structure for a sharp CEO
 or technical reader who has no project context and needs to understand all
 relevant details. Return only the rewrite.
 
-Start with the main conclusion, then explain the relevant background, what
-happened, how it works, the tradeoffs, the options, the recommendation, the
-evidence, the risks, and the unknowns. Include technical details when the reader
-needs them to understand the subject, and define any technical term that may be
-unfamiliar.
+Start with the main conclusion. Explain the background needed to understand the
+conclusion, then describe what happened and how it works. Discuss a tradeoff only
+when the reader needs it to make a decision. Give the recommendation and its
+evidence, and state any risk or unknown that could change the recommendation.
+Define any technical term that may be unfamiliar.
 
 Follow the plain-writing guidelines below. E.g., don't use jargon, and write in
 a more explanatory voice, using longer sentences and commas to connect related
@@ -110,10 +110,9 @@ ideas instead of a series of short sentences.
    Before: The groups the features were sorted into were the authors' own
    reading, the example posts were written by hand, and finer detail meant
    training extra small models and labeling again.
-   After: First, the authors sorted the features into groups themselves, based on
-   their own reading of the outputs. Second, they wrote the example posts by
-   hand. Third, when they wanted finer detail, they trained another small model
-   and labeled the posts again.
+   After: The authors sorted the features into groups based on their own reading
+   of the outputs. They wrote the example posts by hand. When they wanted finer
+   detail, they trained another small model and labeled the posts again.
 
 10. **Organize a paragraph as a topic sentence and then support.** Start each
    paragraph or section with a topic sentence that states the main point. Then
@@ -129,9 +128,9 @@ ideas instead of a series of short sentences.
 11. **Never write three or more clauses in one sentence, or three or more
     example sentences in a row.** A sentence may contain one or two related
     clauses. If it contains three or more clauses, split it into separate
-    sentences. If the clauses form a list, use bullet points. When an example
-    helps, give one example and introduce it with "e.g.". Do not give three or
-    more example sentences back to back to support the same point.
+    sentences. Do not turn the clauses into a list. When an example helps, give
+    one example and introduce it with "e.g.". Do not give three or more example
+    sentences back to back to support the same point.
     Before: The parser reads the file, the validator checks the fields, and the
     writer saves the record.
     After: The parser reads the file, and the validator checks the fields. The
@@ -168,9 +167,9 @@ ideas instead of a series of short sentences.
     Before: The build is fast — it finishes in 10 to 20 seconds.
     After: The build is fast. It finishes in 10 to 20 seconds.
 
-15. **Use a colon only to introduce a list.** Do not use a colon to join clauses
-    or to set up a point. A colon used for a point invites the clever phrasing
-    the user does not want.
+15. **Do not use colons.** A colon usually introduces a list or sets up a point,
+    and both patterns make the prose feel compressed or staged. Use a period and
+    explain the relationship directly.
     Before: Read for the schema: the feature fires.
     After: Read for the schema. The feature fires.
 
@@ -179,8 +178,7 @@ ideas instead of a series of short sentences.
     After: The system logs each "event" as it happens.
 
 17. **Keep the formatting plain.** Use sentence case in headings, and do not
-    use boldface as decoration. Bold is fine when it names the subject that the
-    rest of a list item explains.
+    use boldface as decoration.
     Before: ## How To Install The Skill
     After: ## How to install the skill
 
@@ -197,7 +195,7 @@ ideas instead of a series of short sentences.
     Describe the actual thing in literal terms.
     Before: The feature index is like a card catalog that the optimizer can flip
     through.
-    After: The feature index is a list of named features. The optimizer can look
+    After: The feature index contains named features. The optimizer can look
     up which feature matches a request.
 
 20. **No "not just X, it is Y".** Do not use the negative parallel pattern.
@@ -245,12 +243,21 @@ ideas instead of a series of short sentences.
     paragraph, or a topic sentence by announcing how many points are coming,
     e.g., "Two cautions.", "Three things to keep in mind:", "A few notes
     before we start." State the first point directly and let the next one
-    follow it. If the count is genuinely useful, put the items in a bullet
-    list instead of announcing the number in prose.
+    follow it. Do not replace the count opener with a formatted list. Explain
+    each point in a paragraph that states how it relates to the subject.
     Before: Two cautions. First, the section can drift out of date. Second,
     it can balloon if every item gets a sentence.
     After: The section can drift out of date, because it duplicates facts
     that live elsewhere. It can also balloon if every item gets a sentence.
+
+27. **Do not write lists.** Do not use bullets, numbered items, tables, or a
+    sentence that strings together three or more items. Write connected
+    paragraphs instead, and state how each idea relates to the one before it.
+    Instructions and reference material may keep a required structure when
+    changing the structure would make them incorrect.
+    Before: The checker cannot judge meaning, reader context, or completeness.
+    After: The checker only finds mechanical patterns. Read the text yourself
+    to decide whether the explanation works for its intended reader.
 
 ## How to revise
 
@@ -264,8 +271,7 @@ or a whole sentence does not earn its place, remove it. Then check that a reader
 seeing the text for the first time would understand every sentence.
 
 When `plain-writing-check` is available, run it on prose files after the first
-pass. You can run it without installing it with
+pass. Run it without installing it with
 `uvx --from git+https://github.com/docwriter-org/plain-writing-skill plain-writing-check <path>`.
-Fix the reported mechanical violations, then complete the second pass yourself
-because the checker cannot judge meaning, reader context, or whether an
-explanation is complete.
+Fix the mechanical violations it reports. Then read the text yourself to decide
+whether the explanation works for its intended reader.

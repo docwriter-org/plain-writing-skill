@@ -103,7 +103,7 @@ def _hook_reason(violations: list[Violation]) -> str:
         )
     if len(violations) > len(details):
         details.append(f"{len(violations) - len(details)} more violations were found.")
-    joined = "\n".join(f"- {detail}" for detail in details)
+    joined = "\n".join(details)
     return (
         "Rewrite the entire final response using the plain-writing rules. "
         "Return only the replacement response, with no critique or preface. "

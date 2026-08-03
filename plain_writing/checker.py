@@ -89,13 +89,25 @@ PATTERN_RULES = (
     ),
     _rule(
         "PW014",
-        "Use a colon only to introduce a list.",
-        r":(?=\s+[A-Za-z][^,\n:]{0,100}(?:[.!?]|$))",
+        "Replace the colon with a period and explain the relationship directly.",
+        r":",
     ),
     _rule(
         "PW015",
         "Remove the vague opening and name the subject.",
         r"(?:(?<=^)|(?<=[.!?]\s))(?:Clearly|Obviously|Importantly|Interestingly),?\s",
+    ),
+    _rule(
+        "PW021",
+        "Replace the formatted list with connected paragraphs.",
+        r"^\s*(?:[-+*]|\d+[.)])\s+",
+    ),
+    _rule(
+        "PW022",
+        "Replace the inline list with sentences that explain each relationship.",
+        r"\b[A-Za-z][\w'-]*(?:\s+[A-Za-z][\w'-]*){0,3},\s+"
+        r"[A-Za-z][\w'-]*(?:\s+[A-Za-z][\w'-]*){0,3},\s+"
+        r"(?:and|or)\s+[A-Za-z][\w'-]*(?:\s+[A-Za-z][\w'-]*){0,3}\b",
     ),
 )
 

@@ -78,6 +78,21 @@ class CheckerTests(unittest.TestCase):
         )
         self.assertIn("PW020", rules)
 
+    def test_finds_formatted_and_inline_lists(self) -> None:
+        text = (
+            "The checker finds filler, vague claims, and decorative punctuation.\n\n"
+            "- Remove filler.\n"
+            "- Name each source."
+        )
+        rules = self.rules(text)
+        self.assertTrue({"PW021", "PW022"} <= rules)
+
+    def test_allows_two_related_items(self) -> None:
+        self.assertNotIn(
+            "PW022",
+            self.rules("The checker reports the line and matching text."),
+        )
+
     def test_reports_source_location(self) -> None:
         violation = check_text("A plain first line.\nThis is vague.")[0]
         self.assertEqual((violation.line, violation.column), (2, 1))
