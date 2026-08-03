@@ -5,25 +5,12 @@ This skill makes an AI agent write in a plain style. The full rules are in
 
 The rules are plain text, so any agent can use them.
 
-The skill also checks its own writing and removes any clause or sentence that
-adds nothing the reader needs.
-
-## Where the rules come from
-
-The skill adapts useful ideas from
-[ASD-STE100 Simplified Technical English](https://en.wikipedia.org/wiki/Simplified_Technical_English).
-It tells the agent to use simple words, keep one meaning for each word, use the
-same term for the same thing, name the actor, and keep each sentence about one
-topic.
-
-The skill is not a full implementation of ASD-STE100. The standard uses a
-controlled dictionary and strict grammar for technical maintenance documents.
-This skill applies selected principles to technical and general prose, and it
-keeps the user's preference for complete explanations.
+The skill also checks its own writing and removes anything that does not add
+something.
 
 ## What is in here
 
-- `SKILL.md`: the skill, with the rules and the revision steps.
+- `SKILL.md`: the skill, with the rules and the steps.
 
 ## How to use it
 

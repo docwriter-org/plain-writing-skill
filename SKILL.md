@@ -2,14 +2,14 @@
 name: plain-writing
 description: >-
   Write and edit prose in the user's plain style: simple everyday words,
-  complete sentences, no em or en dashes, no jargon, no analogies, no filler,
-  and full clear explanations. Use this whenever you draft or revise any prose
-  for the user, such as documents, Notion pages, reports, summaries, README
-  files, research notes, proposals, slide text, emails, or commit and PR
-  descriptions. Also use it whenever the user asks to simplify, clean up,
-  tighten, reword, or make writing clearer or easier to read. Default to this
-  style for prose written for the user unless they ask for a different one. Do
-  not apply it to code itself, only to the words around it. When the user invokes
+  complete sentences, no dashes, no jargon, no analogies, no filler, and full
+  clear explanations. Use this whenever you draft or revise any prose for the
+  user, such as documents, Notion pages, reports, summaries, README files,
+  research notes, proposals, slide text, emails, or commit and PR descriptions.
+  Also use it whenever the user asks to simplify, clean up, tighten, reword, or
+  make writing clearer or easier to read. Default to this style for prose
+  written for the user unless they ask for a different one. Do not apply it to
+  code itself, only to the words around it. When the user invokes
   "/plain-writing deslopify" or asks to deslopify an agent response, rewrite
   the response in a clear structure for a sharp CEO or technical reader who
   has no project context and needs to understand all relevant details.
@@ -25,13 +25,6 @@ by default when you write prose for them.
 The rules are in four groups: word choice and tone, sentences and paragraphs,
 punctuation and formatting, and patterns to avoid. Each rule is followed by a
 before and after so you can see it. After the rules comes how to revise.
-
-The rules adapt useful ideas from ASD-STE100 Simplified Technical English. In
-particular, use simple words, keep one meaning for each word, use the same term
-for the same thing, name the actor, and keep each sentence about one topic. This
-skill does not require the STE dictionary or claim full STE compliance. STE was
-designed for maintenance instructions, while this skill also covers general
-prose.
 
 ## The deslopify command
 
@@ -53,15 +46,13 @@ ideas instead of a series of short sentences.
 ## Word choice and tone
 
 1. **Use simple, everyday words.** Prefer the common word over the fancy one.
-   Short familiar words are faster to read. Avoid these words in every meaning
-   and phrase: "delve", "tapestry", "landscape", "robust", "leverage", and
-   "reach".
+   Short familiar words are faster to read. Also avoid words AI tools
+   overuse, e.g., "delve", "tapestry", "landscape", "robust", "leverage", and
+   "reach for".
    Before: We leverage the cache to unlock a more robust query experience.
    After: We use the cache to make repeated queries faster.
 
-2. **No jargon.** Always use language that people can understand. Do not invent
-   jargon or shorthand. Use an established technical term only when it is the
-   most precise term, and briefly define it when readers may not know it.
+2. **No jargon.** Always use human-understandable language. Don't invent jargon or shorthand (that is, if a word or phrase is not in the Merriam Webster dictionary, don't use it). Use established technical terms only when they are most precise, and briefly define them when readers may not know them.
    Before: The score is a calibrated proxy for whether the property holds.
    After: The score estimates how likely the property is to hold.
 
@@ -72,12 +63,11 @@ ideas instead of a series of short sentences.
    Before: This result matters, and it carries weight for the design.
    After: The scores barely moved, so we can skip the model on most documents.
 
-4. **Use one word for one meaning, and repeat it consistently.** When the same
-   thing comes up again, use the same word for it. Do not use a different word
-   just to avoid repetition, and do not use one word for two meanings when a
-   clearer term is available.
-   Before: Upload the document. The system parses the file and saves the record.
-   After: Upload the document. The system parses and saves the document.
+4. **Repeat a word rather than swap in a synonym.** When the same thing comes up
+   again, use the same word for it. Do not use a different word just to avoid
+   repeating yourself, because the swap reads as fancy.
+   Before: Upload the document. The file is parsed, and the record is saved.
+   After: Upload the document. The document is parsed and saved.
 
 5. **Contractions are fine.** They match everyday speech, so use them freely.
    You do not have to write every word out in full.
@@ -103,11 +93,12 @@ ideas instead of a series of short sentences.
 
 ## Sentences and paragraphs
 
-8. **Keep one topic in each complete sentence.** Each sentence has a subject
-   and a verb. Do not write fragments, and do not stitch unrelated topics
-   together with colons or semicolons. A sentence can use "and", "because", or
-   "so" to join two closely related clauses about one topic. The test is
-   whether both clauses help explain the same point.
+8. **Write complete sentences.** Each sentence has a subject and a verb. Do not
+   write fragments, and do not stitch unrelated ideas together with colons or
+   semicolons into one dense line. But do join closely related ideas with plain
+   connectives like "and", "because", or "so" when they belong together.
+   Splitting every compound sentence into fragments makes prose choppy and
+   harder to follow. The test is whether the ideas are actually related.
    Before: The agent polls the file and reacts to changes, and the team meets on
    Tuesdays.
    After: The agent polls the file and reacts to changes. The team meets on
@@ -139,23 +130,23 @@ ideas instead of a series of short sentences.
     example sentences in a row.** A sentence may contain one or two related
     clauses. If it contains three or more clauses, split it into separate
     sentences. If the clauses form a list, use bullet points. When an example
-    helps, give one clearly introduced example. Do not give three or more
-    example sentences back to back to support the same point.
+    helps, give one example and introduce it with "e.g.". Do not give three or
+    more example sentences back to back to support the same point.
     Before: The parser reads the file, the validator checks the fields, and the
     writer saves the record.
     After: The parser reads the file, and the validator checks the fields. The
     writer then saves the record.
 
-12. **Write sentences that explain the point fully.** The user writes the way
-    people explain things out loud, with one or two related clauses that carry
-    the reasoning along. Do not use short, punchy fragments, but do not make
-    length a goal. End a sentence when its one topic is complete, and use a
-    comma before an exception that starts with "unless". Plain writing here
-    means explanatory, not terse.
+12. **Prefer long, explanatory sentences over short, punchy ones.** The user
+    writes the way people explain things out loud, in longer sentences with
+    commas and one or two related clauses that carry the reasoning along. A
+    sentence should end because the thought is complete, not because a short
+    sentence would sound stronger. Plain writing here means explanatory, not
+    terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
     After: The gate runs on every merge and blocks changes that fail a
-    regression case. A regression cannot make it to production, unless someone
+    regression case. A regression can reach production only when someone
     deliberately overrides the check.
 
 13. **Be precise and unambiguous.** Every claim says exactly what changes,
@@ -195,10 +186,9 @@ ideas instead of a series of short sentences.
 
 ## Patterns to avoid
 
-18. **Name the actor and use active voice.** Say who or what performs an action.
-    Use a person, team, or system as the actor when one is known. Do not give
-    human motives or judgments to an object. Common phrases such as "the paper
-    argues" are fine.
+18. **Do not assign actions to inanimate things.** An inanimate subject should
+    usually only take "is" or "are", not an action verb. Make a person the actor
+    instead. Common phrases such as "the paper argues" are fine.
     Before: The logs become searchable records once the job finishes.
     After: You can search the logs once the job finishes.
 
