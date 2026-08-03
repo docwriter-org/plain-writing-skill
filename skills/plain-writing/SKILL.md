@@ -1,13 +1,11 @@
 ---
 name: plain-writing
 description: >-
-  Write and edit prose in the user's plain style: simple everyday words,
-  complete sentences, no dashes, no lists, no jargon, no analogies, no filler,
-  and full clear explanations. Use this whenever you draft or revise any prose for the
-  user, such as documents, Notion pages, reports, summaries, README files,
-  research notes, proposals, slide text, emails, or commit and PR descriptions.
-  Also use it whenever the user asks to simplify, clean up, tighten, reword, or
-  make writing clearer or easier to read. Default to this style for prose
+  Write and edit prose in the user's plain style. Use simple everyday words and
+  complete sentences. Do not use lists or dashes. Do not use jargon or
+  analogies. Remove filler and explain each point fully. Use this whenever you
+  draft or revise prose for the user. Also use it whenever the user asks to
+  simplify writing or improve its clarity. Default to this style for prose
   written for the user unless they ask for a different one. Do not apply it to
   code itself, only to the words around it. When the user invokes
   "/plain-writing deslopify" or asks to deslopify an agent response, rewrite
@@ -116,27 +114,30 @@ ideas instead of a series of short sentences.
 
 10. **Organize a paragraph as a topic sentence and then support.** Start each
    paragraph or section with a topic sentence that states the main point. Then
-   give the support: a supporting example or fact, with an extra sentence about
-   it if it needs one. Introduce more support with a plain connective like "For
-   example", "Moreover", or "Or".
+    give a fact that supports the point. Explain the relationship when the reader
+    may not understand why the fact supports it.
    Before: The parser skips files with no changes. The cache holds the previous
    output. Most renders are fast.
    After: Most renders are fast. For example, the parser skips files with no
    changes, so the server returns early. Moreover, the cache keeps the previous
    output, so a repeated render does no work.
 
-11. **Never write three or more clauses in one sentence, or three or more
-    example sentences in a row.** A sentence may contain one or two related
-    clauses. If it contains three or more clauses, split it into separate
-    sentences. Do not turn the clauses into a list. When an example helps, give
-    one example and introduce it with "e.g.". Do not give three or more example
-    sentences back to back to support the same point.
+11. **Never write three or more clauses in one sentence.** A sentence may
+    contain one or two related clauses. Split a longer sentence where its
+    thought changes.
     Before: The parser reads the file, the validator checks the fields, and the
     writer saves the record.
     After: The parser reads the file, and the validator checks the fields. The
     writer then saves the record.
 
-12. **Prefer long, explanatory sentences over short, punchy ones.** The user
+12. **Label every example.** Introduce an example with "For example," or "e.g.,".
+    Use no more than one example for a point. Do not present an example as if it
+    were another claim.
+    Before: The cache can return stale data after a configuration change.
+    After: For example, the cache can return stale data after a configuration
+    change.
+
+13. **Prefer long, explanatory sentences over short, punchy ones.** The user
     writes the way people explain things out loud, in longer sentences with
     commas and one or two related clauses that carry the reasoning along. A
     sentence should end because the thought is complete, not because a short
@@ -148,7 +149,7 @@ ideas instead of a series of short sentences.
     regression case. A regression can reach production only when someone
     deliberately overrides the check.
 
-13. **Be precise and unambiguous.** Every claim says exactly what changes,
+14. **Be precise and unambiguous.** Every claim says exactly what changes,
     who does what, or by what mechanism, so a reader cannot take it two
     ways. Do not use an evocative abstraction where a concrete statement
     exists, e.g., "improvement stops being guesswork" or "the process gets
@@ -159,38 +160,40 @@ ideas instead of a series of short sentences.
 
 ## Punctuation and formatting
 
-14. **No dashes or middle dots.** Do not use em dashes or en dashes, including in
-    number ranges. Join clauses with a period, or with a word such as "and", and
-    write ranges with "to". Do not use the middle dot (·) as a separator, e.g.,
+15. **No dashes or middle dots.** Do not use em dashes or en dashes, including in
+    number ranges. Join clauses with a period or a plain connective. For example,
+    use "and" when two clauses belong together. Write ranges with "to". Do not
+    use the middle dot (·) as a separator, e.g.,
     in a title like "Lecture 1 · The Three Gulfs". Use a comma, the word "and",
     or separate lines instead.
     Before: The build is fast — it finishes in 10 to 20 seconds.
     After: The build is fast. It finishes in 10 to 20 seconds.
 
-15. **Do not use colons.** A colon usually introduces a list or sets up a point,
+16. **Do not use colons.** A colon usually introduces a list or sets up a point,
     and both patterns make the prose feel compressed or staged. Use a period and
     explain the relationship directly.
     Before: Read for the schema: the feature fires.
     After: Read for the schema. The feature fires.
 
-16. **Use straight quotes, not curly quotes.**
+17. **Use straight quotes, not curly quotes.**
     Before: The system logs each “event” as it happens.
     After: The system logs each "event" as it happens.
 
-17. **Keep the formatting plain.** Use sentence case in headings, and do not
+18. **Keep the formatting plain.** Use sentence case in headings, and do not
     use boldface as decoration.
     Before: ## How To Install The Skill
     After: ## How to install the skill
 
 ## Patterns to avoid
 
-18. **Do not assign actions to inanimate things.** An inanimate subject should
+19. **Do not assign actions to inanimate things.** An inanimate subject should
     usually only take "is" or "are", not an action verb. Make a person the actor
-    instead. Common phrases such as "the paper argues" are fine.
+    instead. Some common phrases are fine. For example, "the paper argues" is
+    acceptable.
     Before: The logs become searchable records once the job finishes.
     After: You can search the logs once the job finishes.
 
-19. **No analogies or imagery.** Do not explain something by comparing it to a
+20. **No analogies or imagery.** Do not explain something by comparing it to a
     different thing. Do not use a metaphor or any phrase meant to sound smart.
     Describe the actual thing in literal terms.
     Before: The feature index is like a card catalog that the optimizer can flip
@@ -198,18 +201,18 @@ ideas instead of a series of short sentences.
     After: The feature index contains named features. The optimizer can look
     up which feature matches a request.
 
-20. **No "not just X, it is Y".** Do not use the negative parallel pattern.
+21. **No "not just X, it is Y".** Do not use the negative parallel pattern.
     State what the thing is.
     Before: It is not just a parser, it is a full toolchain.
     After: It is a parser and a formatter.
 
-21. **No filler.** Cut words and phrases that add nothing, e.g., "it is worth
+22. **No filler.** Cut words and phrases that add nothing, e.g., "it is worth
     noting that". Watch for an "-ing" tail that adds fake analysis. Cut it, or
     say the plain reason.
     Before: The cache stores results, highlighting its value for speed.
     After: The cache stores results, so repeated queries are faster.
 
-22. **Do not stack rhetorical questions.** AI writing often asks two or three
+23. **Do not stack rhetorical questions.** AI writing often asks two or three
     rhetorical questions in a row to sound thoughtful. State the problem directly
     instead of asking the reader to wonder about it.
     Before: Does the tool keep the writer's voice? Does it make the argument
@@ -217,20 +220,20 @@ ideas instead of a series of short sentences.
     After: We do not yet know whether the tool keeps the writer's voice, or
     whether it makes the argument stronger or weaker.
 
-23. **Do not use the dramatic pivot.** Do not set up a statement and then
+24. **Do not use the dramatic pivot.** Do not set up a statement and then
     undercut it in the next sentence. State the full point in one go.
     Before: The model is still opaque. Users notice the wrong citations, but
     those are only one symptom.
     After: The model is still opaque, and the wrong citations are only one
     symptom of it.
 
-24. **Do not attribute a claim to no one.** Do not hide a claim behind a vague
+25. **Do not attribute a claim to no one.** Do not hide a claim behind a vague
     source, e.g., "experts say" or "studies show". Name the source, or cut the
     claim.
     Before: Experts say this approach scales well.
     After: In our benchmark, the parser handled a million rows.
 
-25. **Do not use vague demonstrative pronouns or vague summary nouns.** Do not
+26. **Do not use vague demonstrative pronouns or vague summary nouns.** Do not
     use "This", "That", "These", or "Those" to point at a whole idea instead of
     a named thing, and do not gesture at a prior idea with a bare noun like "the
     result", "the outcome", or "the point". Name the thing you mean. Never open
@@ -239,7 +242,7 @@ ideas instead of a series of short sentences.
     Before: That context carries into the next turn.
     After: The agent applies the rules you saved on the next turn.
 
-26. **Do not open with a count of things.** Never start a sentence, a
+27. **Do not open with a count of things.** Never start a sentence, a
     paragraph, or a topic sentence by announcing how many points are coming,
     e.g., "Two cautions.", "Three things to keep in mind:", "A few notes
     before we start." State the first point directly and let the next one
@@ -250,7 +253,7 @@ ideas instead of a series of short sentences.
     After: The section can drift out of date, because it duplicates facts
     that live elsewhere. It can also balloon if every item gets a sentence.
 
-27. **Do not write lists.** Do not use bullets, numbered items, tables, or a
+28. **Do not write lists.** Do not use bullets, numbered items, tables, or a
     sentence that strings together three or more items. Write connected
     paragraphs instead, and state how each idea relates to the one before it.
     Instructions and reference material may keep a required structure when

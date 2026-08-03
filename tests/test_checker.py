@@ -93,6 +93,18 @@ class CheckerTests(unittest.TestCase):
             self.rules("The checker reports the line and matching text."),
         )
 
+    def test_requires_approved_example_introducer(self) -> None:
+        rules = self.rules("Some files, such as settings.json, need exact names.")
+        self.assertIn("PW023", rules)
+        self.assertNotIn(
+            "PW023",
+            self.rules("For example, settings.json needs its exact name."),
+        )
+        self.assertNotIn(
+            "PW023",
+            self.rules("E.g., settings.json needs its exact name."),
+        )
+
     def test_reports_source_location(self) -> None:
         violation = check_text("A plain first line.\nThis is vague.")[0]
         self.assertEqual((violation.line, violation.column), (2, 1))

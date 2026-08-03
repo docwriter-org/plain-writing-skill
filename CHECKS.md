@@ -27,6 +27,7 @@ location. Each report includes the matching text.
 | PW020 | A sentence with three or more coordinated clauses |
 | PW021 | Markdown bullet or numbered list |
 | PW022 | Three or more items written as an inline list |
+| PW023 | Example introduced with "for instance" or "such as" |
 
 The checker ignores code because its spelling often has to remain exact. It also
 ignores URLs.

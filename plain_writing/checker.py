@@ -109,6 +109,11 @@ PATTERN_RULES = (
         r"[A-Za-z][\w'-]*(?:\s+[A-Za-z][\w'-]*){0,3},\s+"
         r"(?:and|or)\s+[A-Za-z][\w'-]*(?:\s+[A-Za-z][\w'-]*){0,3}\b",
     ),
+    _rule(
+        "PW023",
+        'Introduce the example with "For example," or "e.g.,".',
+        r"\b(?:for instance|such as)\b",
+    ),
 )
 
 
