@@ -98,8 +98,8 @@ def _hook_reason(violations: list[Violation]) -> str:
     details = []
     for item in violations[:12]:
         details.append(
-            f"{item.rule} at line {item.line}: {item.message} "
-            f"Text: {item.excerpt!r}"
+            f"{item.rule} on line {item.line}. {item.message} "
+            f"Matched text {item.excerpt!r}."
         )
     if len(violations) > len(details):
         details.append(f"{len(violations) - len(details)} more violations were found.")
@@ -107,7 +107,7 @@ def _hook_reason(violations: list[Violation]) -> str:
     return (
         "Rewrite the entire final response using the plain-writing rules. "
         "Return only the replacement response, with no critique or preface. "
-        "Fix these programmatically detected violations:\n"
+        "Fix the programmatically detected violations below.\n"
         f"{joined}"
     )
 
