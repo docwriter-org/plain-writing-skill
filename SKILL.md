@@ -260,5 +260,5 @@ First pass. Read the text once and fix anything that breaks the rules above.
 
 Second pass. Read the revised text again as if you had never seen it. Go clause by
 clause and ask whether each clause adds something the reader needs. If a clause
-or a whole sentence does not earn its place, remove it. Then check that a reader
+or sentence adds nothing the reader needs, remove it. Then check that a reader
 seeing the text for the first time would understand every sentence.
