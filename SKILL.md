@@ -53,9 +53,9 @@ ideas instead of a series of short sentences.
 ## Word choice and tone
 
 1. **Use simple, everyday words.** Prefer the common word over the fancy one.
-   Short familiar words are faster to read. Also avoid words AI tools
-   overuse, e.g., "delve", "tapestry", "landscape", "robust", "leverage", and
-   "reach for".
+   Short familiar words are faster to read. Avoid these words in every meaning
+   and phrase: "delve", "tapestry", "landscape", "robust", "leverage", and
+   "reach".
    Before: We leverage the cache to unlock a more robust query experience.
    After: We use the cache to make repeated queries faster.
 
@@ -149,12 +149,13 @@ ideas instead of a series of short sentences.
 12. **Write sentences that explain the point fully.** The user writes the way
     people explain things out loud, with one or two related clauses that carry
     the reasoning along. Do not use short, punchy fragments, but do not make
-    length a goal. End a sentence when its one topic is complete. Plain writing
-    here means explanatory, not terse.
+    length a goal. End a sentence when its one topic is complete, and use a
+    comma before an exception that starts with "unless". Plain writing here
+    means explanatory, not terse.
     Before: The gate runs on every merge. It blocks regressions. Nobody
     bypasses it.
     After: The gate runs on every merge and blocks changes that fail a
-    regression case. A regression can reach production only when someone
+    regression case. A regression cannot make it to production, unless someone
     deliberately overrides the check.
 
 13. **Be precise and unambiguous.** Every claim says exactly what changes,
