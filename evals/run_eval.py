@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EVALS = Path(__file__).resolve().parent
 SOURCES = EVALS / "sources"
 DATASET = EVALS / "dataset.jsonl"
-SKILL = ROOT / "SKILL.md"
+SKILL = ROOT / "skills" / "plain-writing" / "SKILL.md"
 DEFAULT_OUT = EVALS / "outputs"
 
 DEFAULT_MODEL = "gpt-5.5"

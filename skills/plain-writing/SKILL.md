@@ -8,6 +8,7 @@ description: >-
   to simplify, clean up, tighten, reword, or make writing clearer. Use when
   the user invokes /plain-writing deslopify or asks to deslopify an agent
   response. Do not apply to code, only to the words around it.
+license: MIT
 ---
 
 # Plain writing
