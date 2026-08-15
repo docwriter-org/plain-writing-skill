@@ -25,7 +25,7 @@ SAMPLES = (
     ("05", "Product launch copy"),
     ("08", "Slide script"),
     ("02", "Product memo"),
-    ("53", "Fable wrap-up"),
+    ("59", "Fable wrap-up"),
     ("25", "Slide titles"),
     ("32", "Support reply"),
     ("67", "Engineering brief"),
