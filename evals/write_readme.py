@@ -17,6 +17,10 @@ RESULT_DIRS = (
     OUTPUTS / "all",
 )
 EXCERPT_CHARS = 900
+# GitHub sizes HTML tables to the longest line. Long paragraphs in the
+# baseline column then stretch the page. Wrap cells so each column stays
+# about one third of the README width.
+CELL_WRAP = 40
 SAMPLES = (
     ("05", "Product launch copy"),
     ("08", "Slide script"),
@@ -278,9 +282,39 @@ def sample_title(item_id: str, item: dict) -> str:
     )
 
 
+def wrap_lines(text: str, width: int = CELL_WRAP) -> str:
+    """Break long lines on word boundaries so table columns stay narrow."""
+    wrapped: list[str] = []
+    for paragraph in (text or "").split("\n"):
+        if not paragraph:
+            wrapped.append("")
+            continue
+        current: list[str] = []
+        current_len = 0
+        for raw_word in paragraph.split():
+            for word in _chunks(raw_word, width):
+                extra = len(word) + (1 if current else 0)
+                if current and current_len + extra > width:
+                    wrapped.append(" ".join(current))
+                    current = [word]
+                    current_len = len(word)
+                else:
+                    current.append(word)
+                    current_len += extra
+        if current:
+            wrapped.append(" ".join(current))
+    return "\n".join(wrapped)
+
+
+def _chunks(word: str, width: int) -> list[str]:
+    if len(word) <= width:
+        return [word]
+    return [word[i : i + width] for i in range(0, len(word), width)]
+
+
 def table_cell(text: str, limit: int | None = EXCERPT_CHARS) -> str:
-    body = html_escape(excerpt(text, limit)).replace("\n", "<br>")
-    return f'<td valign="top">{body}</td>'
+    body = html_escape(wrap_lines(excerpt(text, limit))).replace("\n", "<br>")
+    return f'<td valign="top" width="33%">{body}</td>'
 
 
 def sample_input(item: dict, row: dict) -> tuple[str, str]:
@@ -301,9 +335,9 @@ def examples_group_table(
         "<table>",
         "<thead>",
         "<tr>",
-        f"<th>{html_escape(first_header)}</th>",
-        "<th>Baseline (no skill)</th>",
-        "<th>Skill-based</th>",
+        f'<th width="33%">{html_escape(first_header)}</th>',
+        '<th width="33%">Baseline (no skill)</th>',
+        '<th width="33%">Skill-based</th>',
         "</tr>",
         "</thead>",
         "<tbody>",
