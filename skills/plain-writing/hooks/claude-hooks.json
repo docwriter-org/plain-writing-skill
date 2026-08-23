@@ -1,0 +1,17 @@
+{
+  "description": "After a writing turn, ask the agent to run /plain-writing review with subagents",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 skills/plain-writing/hooks/review_followup.py",
+            "timeout": 15,
+            "statusMessage": "Checking whether to run a plain-writing review"
+          }
+        ]
+      }
+    ]
+  }
+}
