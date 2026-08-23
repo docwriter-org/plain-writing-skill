@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterAgentResponse": [
+      {
+        "command": "sh ${CURSOR_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh"
+      }
+    ],
+    "stop": [
+      {
+        "command": "sh ${CURSOR_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh",
+        "loop_limit": 1
+      }
+    ]
+  }
+}

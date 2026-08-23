@@ -1,0 +1,17 @@
+{
+  "description": "After a writing turn, ask the agent to run /plain-writing review with subagents",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT:-${CURSOR_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh\"",
+            "timeout": 15,
+            "statusMessage": "Checking whether to run a plain-writing review"
+          }
+        ]
+      }
+    ]
+  }
+}

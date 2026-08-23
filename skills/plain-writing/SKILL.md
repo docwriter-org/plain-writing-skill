@@ -7,7 +7,9 @@ description: >-
   emails, slides, commit messages, or PR descriptions, or when the user asks
   to simplify, clean up, tighten, reword, or make writing clearer. Use when
   the user invokes /plain-writing deslopify or asks to deslopify an agent
-  response. Do not apply to code, only to the words around it.
+  response. Use when the user invokes /plain-writing review, or asks to
+  review existing writing with subagents and then fix what they flag. Do
+  not apply to code, only to the words around it.
 license: MIT
 ---
 
@@ -19,7 +21,7 @@ for them.
 
 There are four groups of rules: word choice and tone, sentences and paragraphs,
 punctuation and formatting, and patterns to avoid. Each rule has a before and
-after. After the rules comes the deslopify command.
+after. After the rules come the deslopify command and the review command.
 
 ## Word choice and tone
 
@@ -273,3 +275,62 @@ the reader needs (standardize on existing well-known terminology, not new
 terminology), and define unfamiliar terms.
 
 Follow the plain-writing rules above.
+
+## The review command
+
+When the user says `/plain-writing review` or `/review`, or a plugin hook
+asks you to review existing writing against these rules, do not rewrite
+yet.
+First send each rule group to its own subagent. Then fix only what those
+reviewers flag.
+
+Triggering this skill while you write is not enough. A first draft still
+needs independent reviewers, and you have to apply their findings.
+
+### What to review
+
+Review the previous agent response. If the user put text or a file path
+after the command, review that instead.
+
+### Step 1. Launch four reviewer subagents in the same turn
+
+Launch four subagents in parallel, one for each rule group. Do not review
+the groups yourself first. Do not skip a group. Do not wait for one
+subagent before you launch the others.
+
+The four groups are:
+
+- Word choice and tone: rules 1 to 7
+- Sentences and paragraphs: rules 8 to 14
+- Punctuation and formatting: rules 15 to 19
+- Patterns to avoid: rules 20 to 25
+
+Give each subagent the writing, only the rules in its group, and the
+instructions in `agents/reviewer.md`. If you can run a script, build those
+prompts with `scripts/review_groups.py --writing <file> --prompts`.
+
+Each subagent returns one finding per rule in its group.
+
+### Step 2. Read every finding
+
+Wait for all four subagents. Collect every fail. If a subagent wraps the
+JSON in a code fence, still read it. Keep a fail when the quoted text is
+in the writing. Drop a fail only when the quote is not in the writing.
+
+### Step 3. Fix the writing
+
+Rewrite the writing so every remaining fail is gone. Keep the facts.
+Follow the rules in this skill. If the writing lives in a file, edit that
+file. If it was a chat reply, return only the rewrite.
+
+Do not argue with a valid fail. Do not leave a flagged phrase because it
+sounds fine to you.
+
+### Step 4. Second pass when needed
+
+If three or more rules failed, launch the same four subagents on the
+rewrite. Fix any remaining fails. Stop after this second pass.
+
+If you cannot launch subagents, review the four groups yourself one after
+another, using the same finding format as `agents/reviewer.md`. Then fix
+the writing.
