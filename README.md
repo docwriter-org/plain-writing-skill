@@ -1,28 +1,19 @@
 # Plain writing skill
 
-This repo is one plugin for several agents. Claude Code, Cursor, Codex,
-and [Pi](https://pi.dev/packages) all load the same rules, the same
-`/review` and `/deslopify` commands, and a hook that starts
-`/plain-writing review` after a writing pass.
+This skill makes an agent write in a plain style: everyday words, complete
+sentences, no dashes, and no jargon. The rules are in
+`skills/plain-writing/SKILL.md`.
 
-Keep the rules in `skills/plain-writing/SKILL.md`. Each client only
-adds a thin install file on top of that folder. Do not fork a package
-per client.
+You can paste that file into any agent. If you install this repo as a
+plugin, you also get two commands and a hook.
 
-## What is in here
+- `/plain-writing deslopify` rewrites a reply for a reader with no
+  project context.
+- `/plain-writing review` has four subagents check a draft against the
+  rules, then the same agent fixes what they flag.
+- After a long writing pass, the hook starts review on its own.
 
-- `skills/plain-writing/SKILL.md`: the rules, deslopify, and review.
-- `skills/plain-writing/hooks/`: writing-pass hooks for Cursor, Claude, and Codex.
-- `extensions/`: the same writing-pass hook for Pi.
-- `commands/`: `/review` and `/deslopify`.
-- `package.json`: Pi package manifest. The same git repo is a Pi package.
-- `plugin.json`: Agent Plugins manifest, for clients that load that standard.
-- `.cursor-plugin/`: Cursor plugin and marketplace files.
-- `.codex-plugin/` and `.agents/plugins/`: Codex plugin and marketplace files.
-- `.claude-plugin/`: Claude Code plugin and marketplace files.
-- `evals/`: optional. Only needed if you want to measure the skill.
-
-## Add it as a plugin
+## Install
 
 ### Claude Code
 
@@ -31,31 +22,24 @@ per client.
 /plugin install plain-writing@plain-writing
 ```
 
-Then run `/reload-plugins` if the install summary asks for it. The
-namespaced commands are `/plain-writing:review` and
-`/plain-writing:deslopify`.
+Reload plugins if the install summary asks you to. The commands show up
+as `/plain-writing:review` and `/plain-writing:deslopify`.
 
 ### Cursor
-
-From the Cursor CLI:
 
 ```
 cursor-agent plugin marketplace add https://github.com/docwriter-org/plain-writing-skill
 ```
 
-Then start `cursor-agent`, run `/plugin`, and install `plain-writing`.
-You can also import the same GitHub URL under Dashboard, Plugins, Team
-Marketplaces, then install it for the project or for your user.
+Then run `/plugin` and install `plain-writing`. You can also add that
+GitHub URL as a team marketplace. The commands are `/review` and
+`/deslopify`.
 
 To try it on one machine without a marketplace:
 
 ```
 ln -s /path/to/plain-writing-skill ~/.cursor/plugins/local/plain-writing
 ```
-
-Then reload the Cursor window. The commands are `/review` and
-`/deslopify`. After a writing pass, the hook asks the agent to run
-review.
 
 ### Codex
 
@@ -64,25 +48,12 @@ codex plugin marketplace add docwriter-org/plain-writing-skill
 codex plugin add plain-writing@plain-writing
 ```
 
-Then run `/hooks` and trust the Stop hook. Codex loads the skill from
-this plugin. The same writing-pass Stop hook asks the agent to run
-`/plain-writing review`.
+Then run `/hooks` and trust the Stop hook.
 
 ### Pi
 
 ```
 pi install git:github.com/docwriter-org/plain-writing-skill
-```
-
-That loads the skill, the `/review` and `/deslopify` prompts, and the
-writing-pass extension. After a writing pass, Pi queues the same review
-follow-up. Use `pi remove git:github.com/docwriter-org/plain-writing-skill`
-to remove it.
-
-To try it for one run without installing:
-
-```
-pi -e git:github.com/docwriter-org/plain-writing-skill
 ```
 
 ### Other agents
@@ -94,61 +65,48 @@ loads skills:
 gh skill install docwriter-org/plain-writing-skill plain-writing
 ```
 
-You can also copy `skills/plain-writing` into that agent's skills
-folder, or paste `SKILL.md` into its instructions. The hook runs when
-the plugin is installed in Cursor, Codex, Claude Code, or Pi.
+You can also copy `skills/plain-writing` into the agent's skills folder,
+or paste `SKILL.md` into its instructions. The hook runs only when the
+plugin is installed.
 
-## Deslopify an agent response
+## Deslopify
 
-Use the command below when an agent response assumes too much context, uses
-unexplained technical terms, or does not make the main point clear.
+Use this when a reply assumes too much context, uses unexplained terms,
+or hides the main point.
 
 ```
 /plain-writing deslopify
 ```
 
-The skill rewrites the agent's previous response in a clear structure for a
-sharp CEO or technical reader who has no project context and needs to understand
-all relevant details. The rewrite follows the plain-writing guidelines in the
-skill.
+The skill rewrites the last agent reply for a sharp reader who has no
+project context. Put text after the command if you want to rewrite
+something else. It returns only the rewrite.
 
-You can also put text after the command when you want to rewrite text other than
-the previous response.
+## Review
 
-## Review existing writing
-
-Use this command when an agent already wrote something and you want
-independent reviewers to check the rules, then have the same agent fix
-what they flag. Triggering the skill while the agent writes is often not
-enough.
+Use this when an agent already wrote something and you want a second
+check before you keep it. Asking the skill to write plainly on the first
+pass is often not enough.
 
 ```
 /plain-writing review
 ```
 
-Put a file path or the text after the command when you do not want to
-review the previous response.
+It reviews the last agent reply. Put a file path or the text after the
+command to review something else.
 
 The agent launches four subagents in the same turn, one for each rule
 group. Each subagent judges only its rules. The main agent reads those
 findings and rewrites the text.
 
-This is not the same as the dataset evals in `evals/`. Those measure
-whether the skill beats a baseline on saved writing tasks. `/plain-writing
-review` judges one live draft.
+This is not the dataset evals in `evals/`. Those measure the skill on
+saved writing tasks. `/plain-writing review` judges one live draft.
 
-## Review hooks
-
-The plugin turns the hook on for you. After a writing pass, it asks the
-agent to run `/plain-writing review`. A writing pass is a long prose
-reply to a writing request, or a long prose reply with almost no code.
-The hook stays quiet after coding work, short status replies, and the
-review pass itself.
-
-You do not need to copy hook files into each project. In Codex, run
-`/hooks` once and trust the Stop hook.
+The hook starts this review after a writing pass: a long prose reply to
+a writing request, or a long prose reply with almost no code. It stays
+quiet after coding work, short status replies, and the review itself.
 
 ## Evals
 
-A skill install does not need the evals. If you want to run them, clone the
-repo and see `evals/README.md`.
+You do not need the evals to use the skill. To run them, clone the repo
+and see `evals/README.md`.
