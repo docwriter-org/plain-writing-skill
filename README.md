@@ -1,44 +1,64 @@
 # Plain writing skill
 
-This skill makes an AI agent write in a plain style. The full rules are in
-`skills/plain-writing/SKILL.md`.
+This repo is a plugin. Install it once, and the agent gets the writing
+rules, the `/review` and `/deslopify` commands, and a hook that starts
+`/plain-writing review` after a writing pass.
 
-The rules are plain text, so any agent can use them.
-
-The skill also checks its own writing and removes anything that does not add
-something.
+The full rules are in `skills/plain-writing/SKILL.md`.
 
 ## What is in here
 
-- `skills/plain-writing/SKILL.md`: the skill, with the rules, deslopify, and review.
-- `skills/plain-writing/agents/`: reviewer instructions for the review command.
-- `skills/plain-writing/scripts/`: builds the four reviewer prompts from the rules.
-- `skills/plain-writing/hooks/`: optional stop hooks that start one review pass.
+- `plugin.json`: Agent Plugins manifest, for clients that load that standard.
+- `.cursor-plugin/`: Cursor plugin and marketplace files.
+- `.claude-plugin/`: Claude Code plugin and marketplace files.
+- `commands/`: `/review` and `/deslopify` command files.
+- `skills/plain-writing/SKILL.md`: the rules, deslopify, and review.
+- `skills/plain-writing/hooks/`: writing-pass hooks that ship with the plugin.
 - `evals/`: optional. Only needed if you want to measure the skill.
 
-## How to use it
+## Add it as a plugin
 
-`skills/plain-writing/SKILL.md` is a plain markdown file with the rules. Any
-agent that can read a file can follow it. The simplest way is to give that
-file to the agent as instructions, in a rules file or the system prompt.
+### Claude Code
 
-The skill lives under `skills/` so `gh skill install` can find it:
+```
+/plugin marketplace add docwriter-org/plain-writing-skill
+/plugin install plain-writing@plain-writing
+```
+
+Then run `/reload-plugins` if the install summary asks for it. The
+namespaced commands are `/plain-writing:review` and
+`/plain-writing:deslopify`.
+
+### Cursor
+
+Import this GitHub repo as a team marketplace, then install
+`plain-writing`:
+
+1. Open Dashboard, then Plugins.
+2. Under Team Marketplaces, import `https://github.com/docwriter-org/plain-writing-skill`.
+3. Install `plain-writing` for the project or for your user.
+
+To try it on one machine without a team marketplace:
+
+```
+ln -s /path/to/plain-writing-skill ~/.cursor/plugins/local/plain-writing
+```
+
+Then reload the Cursor window. The commands are `/review` and
+`/deslopify`.
+
+### Other agents
+
+If the agent loads Agent Plugins, point it at this repo. If it only
+loads skills:
 
 ```
 gh skill install docwriter-org/plain-writing-skill plain-writing
 ```
 
-Some tools have a set place for skills:
-
-- Claude Code reads skills from `~/.claude/skills`. Copy the whole
-  `skills/plain-writing` folder so the review command can find the
-  reviewer file and scripts. You do not need the evals.
-
-- Other agents, e.g., Codex or pi, can use the rules too. Paste the rules from
-  `skills/plain-writing/SKILL.md` into whatever instructions that agent reads.
-
-Then ask the agent to write or revise some text. It applies the rules on its
-own.
+You can also copy `skills/plain-writing` into that agent's skills
+folder, or paste `SKILL.md` into its instructions. The hook only runs
+when the plugin is installed in Cursor or Claude Code.
 
 ## Deslopify an agent response
 
@@ -81,17 +101,13 @@ review` judges one live draft.
 
 ## Review hooks
 
-The review can also start on its own after a writing pass. Copy
-`skills/plain-writing/hooks/cursor-hooks.json` to `.cursor/hooks.json`, or
-copy `skills/plain-writing/hooks/claude-hooks.json` into a Claude Code
-plugin hooks file. Point the command at
-`skills/plain-writing/hooks/review_followup.py`.
+The plugin turns the hook on for you. After a writing pass, it asks the
+agent to run `/plain-writing review`. A writing pass is a long prose
+reply to a writing request, or a long prose reply with almost no code.
+The hook stays quiet after coding work, short status replies, and the
+review pass itself.
 
-The hook records the last agent reply, then on stop it asks for
-`/plain-writing review` only when that reply was a writing pass. A writing
-pass is a long prose reply to a writing request, or a long prose reply
-with almost no code. The hook stays quiet after coding work, short status
-replies, and the review pass itself.
+You do not need to copy hook files into each project.
 
 ## Evals
 

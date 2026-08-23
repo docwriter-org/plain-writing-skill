@@ -278,8 +278,9 @@ Follow the plain-writing rules above.
 
 ## The review command
 
-When the user says `/plain-writing review`, or a hook asks you to review
-existing writing against these rules, do not rewrite yet.
+When the user says `/plain-writing review` or `/review`, or a plugin hook
+asks you to review existing writing against these rules, do not rewrite
+yet.
 First send each rule group to its own subagent. Then fix only what those
 reviewers flag.
 

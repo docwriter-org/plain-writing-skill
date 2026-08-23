@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 skills/plain-writing/hooks/review_followup.py",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT:-${CURSOR_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh\"",
             "timeout": 15,
             "statusMessage": "Checking whether to run a plain-writing review"
           }

@@ -3,12 +3,12 @@
   "hooks": {
     "afterAgentResponse": [
       {
-        "command": "python3 skills/plain-writing/hooks/review_followup.py"
+        "command": "sh ${CURSOR_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh"
       }
     ],
     "stop": [
       {
-        "command": "python3 skills/plain-writing/hooks/review_followup.py",
+        "command": "sh ${CURSOR_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-${PLUGIN_ROOT:-.}}}/skills/plain-writing/hooks/run-review-followup.sh",
         "loop_limit": 1
       }
     ]

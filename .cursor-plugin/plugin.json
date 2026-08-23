@@ -1,0 +1,15 @@
+{
+  "name": "plain-writing",
+  "version": "1.0.0",
+  "description": "Plain writing skill, review command, and a hook that starts review after a writing pass",
+  "author": {
+    "name": "Docwriter"
+  },
+  "homepage": "https://github.com/docwriter-org/plain-writing-skill",
+  "repository": "https://github.com/docwriter-org/plain-writing-skill",
+  "license": "MIT",
+  "keywords": ["writing", "plain-language", "review", "deslopify"],
+  "skills": "./skills",
+  "commands": "./commands",
+  "hooks": "./skills/plain-writing/hooks/cursor-hooks.json"
+}
