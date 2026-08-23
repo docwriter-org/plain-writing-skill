@@ -10,6 +10,7 @@ The full rules are in `skills/plain-writing/SKILL.md`.
 
 - `plugin.json`: Agent Plugins manifest, for clients that load that standard.
 - `.cursor-plugin/`: Cursor plugin and marketplace files.
+- `.codex-plugin/` and `.agents/plugins/`: Codex plugin and marketplace files.
 - `.claude-plugin/`: Claude Code plugin and marketplace files.
 - `commands/`: `/review` and `/deslopify` command files.
 - `skills/plain-writing/SKILL.md`: the rules, deslopify, and review.
@@ -31,21 +32,36 @@ namespaced commands are `/plain-writing:review` and
 
 ### Cursor
 
-Import this GitHub repo as a team marketplace, then install
-`plain-writing`:
+From the Cursor CLI:
 
-1. Open Dashboard, then Plugins.
-2. Under Team Marketplaces, import `https://github.com/docwriter-org/plain-writing-skill`.
-3. Install `plain-writing` for the project or for your user.
+```
+cursor-agent plugin marketplace add https://github.com/docwriter-org/plain-writing-skill
+```
 
-To try it on one machine without a team marketplace:
+Then start `cursor-agent`, run `/plugin`, and install `plain-writing`.
+You can also import the same GitHub URL under Dashboard, Plugins, Team
+Marketplaces, then install it for the project or for your user.
+
+To try it on one machine without a marketplace:
 
 ```
 ln -s /path/to/plain-writing-skill ~/.cursor/plugins/local/plain-writing
 ```
 
 Then reload the Cursor window. The commands are `/review` and
-`/deslopify`.
+`/deslopify`. After a writing pass, the hook asks the agent to run
+review.
+
+### Codex
+
+```
+codex plugin marketplace add docwriter-org/plain-writing-skill
+codex plugin add plain-writing@plain-writing
+```
+
+Then run `/hooks` and trust the Stop hook. Codex loads the skill from
+this plugin. The same writing-pass Stop hook asks the agent to run
+`/plain-writing review`.
 
 ### Other agents
 
@@ -57,8 +73,8 @@ gh skill install docwriter-org/plain-writing-skill plain-writing
 ```
 
 You can also copy `skills/plain-writing` into that agent's skills
-folder, or paste `SKILL.md` into its instructions. The hook only runs
-when the plugin is installed in Cursor or Claude Code.
+folder, or paste `SKILL.md` into its instructions. The hook runs when
+the plugin is installed in Cursor, Codex, or Claude Code.
 
 ## Deslopify an agent response
 
@@ -107,7 +123,8 @@ reply to a writing request, or a long prose reply with almost no code.
 The hook stays quiet after coding work, short status replies, and the
 review pass itself.
 
-You do not need to copy hook files into each project.
+You do not need to copy hook files into each project. In Codex, run
+`/hooks` once and trust the Stop hook.
 
 ## Evals
 

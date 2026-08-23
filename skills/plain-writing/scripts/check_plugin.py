@@ -14,6 +14,8 @@ REQUIRED_JSON = (
     ROOT / ".cursor-plugin" / "marketplace.json",
     ROOT / ".claude-plugin" / "plugin.json",
     ROOT / ".claude-plugin" / "marketplace.json",
+    ROOT / ".codex-plugin" / "plugin.json",
+    ROOT / ".agents" / "plugins" / "marketplace.json",
     ROOT / "skills" / "plain-writing" / "hooks" / "cursor-hooks.json",
     ROOT / "skills" / "plain-writing" / "hooks" / "claude-hooks.json",
 )
@@ -54,6 +56,12 @@ def main() -> int:
     claude_cmd = claude_hooks["hooks"]["Stop"][0]["hooks"][0]["command"]
     if "run-review-followup.sh" not in claude_cmd:
         errors.append("claude hook does not call run-review-followup.sh")
+
+    codex_plugin = json.loads((ROOT / ".codex-plugin" / "plugin.json").read_text())
+    if "claude-hooks.json" not in str(codex_plugin.get("hooks") or ""):
+        errors.append("codex plugin does not point at the Stop hook file")
+    if not str(codex_plugin.get("skills") or "").startswith("./skills"):
+        errors.append("codex plugin is missing the skills path")
 
     review = (ROOT / "commands" / "review.md").read_text()
     if "four reviewer subagents" not in review:
