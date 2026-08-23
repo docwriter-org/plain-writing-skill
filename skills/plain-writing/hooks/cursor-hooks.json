@@ -1,6 +1,11 @@
 {
   "version": 1,
   "hooks": {
+    "afterAgentResponse": [
+      {
+        "command": "python3 skills/plain-writing/hooks/review_followup.py"
+      }
+    ],
     "stop": [
       {
         "command": "python3 skills/plain-writing/hooks/review_followup.py",

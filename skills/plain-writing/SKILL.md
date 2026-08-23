@@ -7,10 +7,9 @@ description: >-
   emails, slides, commit messages, or PR descriptions, or when the user asks
   to simplify, clean up, tighten, reword, or make writing clearer. Use when
   the user invokes /plain-writing deslopify or asks to deslopify an agent
-  response. Use when the user invokes /plain-writing review or
-  /plain-writing eval, or asks to review existing writing with subagents
-  and then fix what they flag. Do not apply to code, only to the words
-  around it.
+  response. Use when the user invokes /plain-writing review, or asks to
+  review existing writing with subagents and then fix what they flag. Do
+  not apply to code, only to the words around it.
 license: MIT
 ---
 
@@ -279,8 +278,8 @@ Follow the plain-writing rules above.
 
 ## The review command
 
-When the user says `/plain-writing review` or `/plain-writing eval`, or asks
-you to review existing writing against these rules, do not rewrite yet.
+When the user says `/plain-writing review`, or a hook asks you to review
+existing writing against these rules, do not rewrite yet.
 First send each rule group to its own subagent. Then fix only what those
 reviewers flag.
 

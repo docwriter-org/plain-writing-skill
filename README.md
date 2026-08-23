@@ -68,20 +68,30 @@ enough.
 /plain-writing review
 ```
 
-You can also write `/plain-writing eval`. Put a file path or the text after
-the command when you do not want to review the previous response.
+Put a file path or the text after the command when you do not want to
+review the previous response.
 
 The agent launches four subagents in the same turn, one for each rule
 group. Each subagent judges only its rules. The main agent reads those
 findings and rewrites the text.
 
-If you want that loop to start on its own after a writing turn, copy
+This is not the same as the dataset evals in `evals/`. Those measure
+whether the skill beats a baseline on saved writing tasks. `/plain-writing
+review` judges one live draft.
+
+## Review hooks
+
+The review can also start on its own after a writing pass. Copy
 `skills/plain-writing/hooks/cursor-hooks.json` to `.cursor/hooks.json`, or
 copy `skills/plain-writing/hooks/claude-hooks.json` into a Claude Code
 plugin hooks file. Point the command at
-`skills/plain-writing/hooks/review_followup.py`. The hook asks the agent
-to run `/plain-writing review` once. Set `PLAIN_WRITING_REVIEW_HOOK=always`
-if you want that follow-up after every completed turn.
+`skills/plain-writing/hooks/review_followup.py`.
+
+The hook records the last agent reply, then on stop it asks for
+`/plain-writing review` only when that reply was a writing pass. A writing
+pass is a long prose reply to a writing request, or a long prose reply
+with almost no code. The hook stays quiet after coding work, short status
+replies, and the review pass itself.
 
 ## Evals
 

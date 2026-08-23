@@ -54,7 +54,6 @@ GROUPS = (
 
 REVIEW_MARKERS = (
     "/plain-writing review",
-    "/plain-writing eval",
 )
 
 
