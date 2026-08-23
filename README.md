@@ -1,20 +1,25 @@
 # Plain writing skill
 
-This repo is a plugin. Install it once, and the agent gets the writing
-rules, the `/review` and `/deslopify` commands, and a hook that starts
+This repo is one plugin for several agents. Claude Code, Cursor, Codex,
+and [Pi](https://pi.dev/packages) all load the same rules, the same
+`/review` and `/deslopify` commands, and a hook that starts
 `/plain-writing review` after a writing pass.
 
-The full rules are in `skills/plain-writing/SKILL.md`.
+Keep the rules in `skills/plain-writing/SKILL.md`. Each client only
+adds a thin install file on top of that folder. Do not fork a package
+per client.
 
 ## What is in here
 
+- `skills/plain-writing/SKILL.md`: the rules, deslopify, and review.
+- `skills/plain-writing/hooks/`: writing-pass hooks for Cursor, Claude, and Codex.
+- `extensions/`: the same writing-pass hook for Pi.
+- `commands/`: `/review` and `/deslopify`.
+- `package.json`: Pi package manifest. The same git repo is a Pi package.
 - `plugin.json`: Agent Plugins manifest, for clients that load that standard.
 - `.cursor-plugin/`: Cursor plugin and marketplace files.
 - `.codex-plugin/` and `.agents/plugins/`: Codex plugin and marketplace files.
 - `.claude-plugin/`: Claude Code plugin and marketplace files.
-- `commands/`: `/review` and `/deslopify` command files.
-- `skills/plain-writing/SKILL.md`: the rules, deslopify, and review.
-- `skills/plain-writing/hooks/`: writing-pass hooks that ship with the plugin.
 - `evals/`: optional. Only needed if you want to measure the skill.
 
 ## Add it as a plugin
@@ -63,6 +68,23 @@ Then run `/hooks` and trust the Stop hook. Codex loads the skill from
 this plugin. The same writing-pass Stop hook asks the agent to run
 `/plain-writing review`.
 
+### Pi
+
+```
+pi install git:github.com/docwriter-org/plain-writing-skill
+```
+
+That loads the skill, the `/review` and `/deslopify` prompts, and the
+writing-pass extension. After a writing pass, Pi queues the same review
+follow-up. Use `pi remove git:github.com/docwriter-org/plain-writing-skill`
+to remove it.
+
+To try it for one run without installing:
+
+```
+pi -e git:github.com/docwriter-org/plain-writing-skill
+```
+
 ### Other agents
 
 If the agent loads Agent Plugins, point it at this repo. If it only
@@ -74,7 +96,7 @@ gh skill install docwriter-org/plain-writing-skill plain-writing
 
 You can also copy `skills/plain-writing` into that agent's skills
 folder, or paste `SKILL.md` into its instructions. The hook runs when
-the plugin is installed in Cursor, Codex, or Claude Code.
+the plugin is installed in Cursor, Codex, Claude Code, or Pi.
 
 ## Deslopify an agent response
 

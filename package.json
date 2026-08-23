@@ -1,0 +1,43 @@
+{
+  "name": "plain-writing",
+  "version": "1.0.0",
+  "description": "Plain writing skill, review command, and a hook that starts review after a writing pass",
+  "type": "module",
+  "license": "MIT",
+  "author": "Docwriter",
+  "homepage": "https://github.com/docwriter-org/plain-writing-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/docwriter-org/plain-writing-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/docwriter-org/plain-writing-skill/issues"
+  },
+  "keywords": [
+    "pi-package",
+    "writing",
+    "plain-language",
+    "review",
+    "deslopify"
+  ],
+  "files": [
+    "commands",
+    "extensions",
+    "skills/plain-writing",
+    "plugin.json",
+    ".cursor-plugin",
+    ".claude-plugin",
+    ".codex-plugin",
+    ".agents",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node extensions/plain-writing-review.js --self-test"
+  },
+  "pi": {
+    "extensions": ["./extensions"],
+    "skills": ["./skills"],
+    "prompts": ["./commands"]
+  }
+}

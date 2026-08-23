@@ -10,6 +10,9 @@ The hook follows up at most once per conversation. It stays quiet on
 code-heavy turns, short status replies, and the review pass itself.
 Set PLAIN_WRITING_REVIEW_HOOK=always only if you want every completed
 turn treated as writing.
+
+Keep FOLLOWUP and is_writing_pass in sync with
+extensions/plain-writing-review.js, which is the same check for Pi.
 """
 
 from __future__ import annotations
