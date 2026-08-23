@@ -12,6 +12,7 @@ something.
 
 - `skills/plain-writing/SKILL.md`: the skill, with the rules, deslopify, and review.
 - `skills/plain-writing/agents/`: reviewer instructions for the review command.
+- `skills/plain-writing/scripts/`: builds the four reviewer prompts from the rules.
 - `skills/plain-writing/hooks/`: optional stop hooks that start one review pass.
 - `evals/`: optional. Only needed if you want to measure the skill.
 

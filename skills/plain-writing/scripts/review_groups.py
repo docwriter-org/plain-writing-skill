@@ -126,6 +126,8 @@ def self_test() -> int:
 
     if "Launch four reviewer subagents" not in skill_text:
         errors.append("SKILL.md is missing the four-subagent review step")
+    if "code fence" not in skill_text:
+        errors.append("SKILL.md does not tell the agent to read fenced JSON")
 
     if "agents/reviewer.md" not in skill_text:
         errors.append("SKILL.md does not point at agents/reviewer.md")

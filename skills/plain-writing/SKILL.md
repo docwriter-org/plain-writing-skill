@@ -313,9 +313,9 @@ Each subagent returns one finding per rule in its group.
 
 ### Step 2. Read every finding
 
-Wait for all four subagents. Collect every fail. Keep a fail when the
-quoted text is in the writing. Drop a fail only when the quote is not in
-the writing.
+Wait for all four subagents. Collect every fail. If a subagent wraps the
+JSON in a code fence, still read it. Keep a fail when the quoted text is
+in the writing. Drop a fail only when the quote is not in the writing.
 
 ### Step 3. Fix the writing
 
